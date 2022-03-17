@@ -4,11 +4,15 @@ require("dotenv/config");
 const api = process.env.API_URL;
 const morgan = require("morgan");
 const mongoose = require("mongoose");
+const cors = require("cors");
+
 
 const productRouter = require('./routers/products');
 
 app.use(express.json());
 app.use(morgan('tiny'));
+app.use(cors());
+app.options('*', cors())
 
 app.use(`${api}/products`,productRouter);
 
