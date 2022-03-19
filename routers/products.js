@@ -109,8 +109,7 @@ router.put('/:pid', async (req, res) => {
             richDescription: req.body.richDescription,
             category: req.body.category,
         },
-        { new: true }
-    )
+        { new: true })
 
     if (!product) return res.status(404).send('Product can not be update')
 
