@@ -14,7 +14,7 @@ const FileTypes = {
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
         const isValid = FileTypes[file.mimetype]
-        let typeError = new Error('invalid Image Type')
+        let typeError = new Error('invalid image Type')
         if (isValid) typeError = null
         cb(typeError, 'public/uploads')
     },
@@ -34,7 +34,8 @@ router.post('/', uploadsOption.single('image'), async (req, res) => {
     if (!category) return res.status(400).send('Category is invalid')
 
     const file = req.file
-    if (!file) return res.status(400).send('Image is not in the request!')
+    console.log(file);
+    if (!file) return res.status(400).send('image is not in the request!')
 
     const filename = req.file.filename
     const baseUrl = `${req.protocol}://${req.get('host')}/public/uploads/`
